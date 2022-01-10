@@ -11,33 +11,31 @@ import javax.persistence.OneToOne;
 public class Player {
 	//id, name, type, avg, batting, bowling,team
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 	private String type;
 	private double average;
 	@OneToOne   
-	private Batting battingStats;
+	private Batsman batsmanStats;
 	@OneToOne
-	private Bowling bowlingStats;
+	private Bowler bowlerStats;
 	private int teamId;
-	
-	
-	
+
 	public Player() {
 		super();
 		
 	}
 
-	public Player(int id, String name, String type, double average, Batting battingStats, Bowling bowlingStats,
-			int teamId) {
+	public Player(int id, String name, String type, double average, Batsman batsmanStats, Bowler bowlerStats,
+				  int teamId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.average = average;
-		this.battingStats = battingStats;
-		this.bowlingStats = bowlingStats;
+		this.batsmanStats = batsmanStats;
+		this.bowlerStats = bowlerStats;
 		this.teamId = teamId;
 	}
 
@@ -73,20 +71,20 @@ public class Player {
 		this.average = average;
 	}
 
-	public Batting getBattingStats() {
-		return battingStats;
+	public Batsman getBattingStats() {
+		return batsmanStats;
 	}
 
-	public void setBattingStats(Batting battingStats) {
-		this.battingStats = battingStats;
+	public void setBattingStats(Batsman batsmanStats) {
+		this.batsmanStats = batsmanStats;
 	}
 
-	public Bowling getBowlingStats() {
-		return bowlingStats;
+	public Bowler getBowlingStats() {
+		return bowlerStats;
 	}
 
-	public void setBowlingStats(Bowling bowlingStats) {
-		this.bowlingStats = bowlingStats;
+	public void setBowlingStats(Bowler bowlerStats) {
+		this.bowlerStats = bowlerStats;
 	}
 
 	public int getTeamId() {
@@ -100,7 +98,7 @@ public class Player {
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", name=" + name + ", type=" + type + ", average=" + average + ", battingStats="
-				+ battingStats + ", bowlingStats=" + bowlingStats + ", teamId=" + teamId + "]";
+				+ batsmanStats + ", bowlingStats=" + bowlerStats + ", teamId=" + teamId + "]";
 	}
 	
 	

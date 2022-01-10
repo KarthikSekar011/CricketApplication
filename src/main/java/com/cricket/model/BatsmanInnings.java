@@ -3,22 +3,56 @@ package com.cricket.model;
 import javax.persistence.*;
 
 @Entity
-public class BatterInnings {
+@Table(name = "batsmanInnings")
+public class BatsmanInnings {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BATSMAN_INNINGS_PK", nullable = false)
     private Long id;
-
+    
+    @Column(name = "BATSMAN_ID")
     private long batsmanId;
+    
+    @Column(name = "BATSMAN_NAME")
     private String name;
+    
+    @Column(name = "RUNS_SCORED")
     private int runsScored;
+
+    @Column(name = "NO_OF_BALLS_PLAYED")
     private int noOfBallsPlayed;
+    
+    @Column(name = "BOUNDARIES")
     private int boundaries;
+    
+    @Column(name = "SIXES")
     private int sixes;
+    
+    @Column(name = "STRIKE_RATE")
     private double strikeRate;
+    
+    @Column(name = "STATE")
     private BattingState state;
 
-    public BatterInnings() { }
+    @ManyToOne
+    @JoinColumn(name = "INNINGS_ID", referencedColumnName = "INNINGS_ID", nullable = false)
+    private Innings batsmanInnings;
+    
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "striker")
+    private Innings strikerMapped;
+    
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "nonStriker")
+    private Innings nonStrikerMapped;
+
+    public Innings getBatsmanInnings() {
+        return batsmanInnings;
+    }
+
+    public void setBatsmanInnings(Innings batsmanInnings) {
+        this.batsmanInnings = batsmanInnings;
+    }
+
+    public BatsmanInnings() { }
 
     public Long getId() {
         return id;
@@ -93,7 +127,23 @@ public class BatterInnings {
         this.state = state;
     }
 
-    public BatterInnings (BatterInningsBuilder batterInnings) {
+    public Innings getStrikerMapped() {
+        return strikerMapped;
+    }
+
+    public void setStrikerMapped(Innings strikerMapped) {
+        this.strikerMapped = strikerMapped;
+    }
+
+    public Innings getNonStrikerMapped() {
+        return nonStrikerMapped;
+    }
+
+    public void setNonStrikerMapped(Innings nonStrikerMapped) {
+        this.nonStrikerMapped = nonStrikerMapped;
+    }
+
+    public BatsmanInnings(BatterInningsBuilder batterInnings) {
         this.batsmanId = batterInnings.batsmanId;
         this.name = batterInnings.name;
         this.state = batterInnings.state;
@@ -119,8 +169,8 @@ public class BatterInnings {
             return this;
         }
 
-        public BatterInnings build() {
-            return new BatterInnings(this);
+        public BatsmanInnings build() {
+            return new BatsmanInnings(this);
         }
     }
 

@@ -7,33 +7,33 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @CrossOrigin(origins = "http://localhost:4200/")
-@RequestMapping(path = "match")
-public interface MatchClient {
+@RequestMapping(path = "Game")
+public interface GameClient {
 
-    @PostMapping("/preMatchDetails")
-    public Match startMatch(Match preMatchDetails);
+    @PostMapping("/preGameDetails")
+    public Game startGame(PreGameDetails preGameDetails);
 
     @PutMapping("/addScore")
-    public Match addScore(Runs run);
+    public Game addScore(Runs run);
 
     @PutMapping("/addScoreForExtras")
-    public Match addScoreForExtras(ExtraType extra, Runs run);
+    public Game addScoreForExtras(ExtraType extra, Runs run);
 
     @PutMapping("/batsmanDismissed")
-    public Match batsmanDismissed(Dismissal dismissalType, Runs run, String catcherName);
+    public Game batsmanDismissed(Dismissal dismissalType, Runs run, String catcherName);
 
     @PutMapping("/undo")
-    public Match undoSelected();
+    public Game undoSelected();
 
     @PutMapping("/addNextBatsman")
-    public Match nextBatsman(Player player);
+    public Game nextBatsman(Player player);
 
     @PutMapping("/addNextBowler")
-    public Match nextBowler(Player player);
+    public Game nextBowler(Player player);
 
     @PutMapping("/startSecondInnings")
-    public Match startSecondInnings(int target);
+    public Game startSecondInnings(int target);
 
-    @PutMapping("/finishMatch")
-    public void finishMatch();
+    @PutMapping("/finishGame")
+    public void finishGame();
 }

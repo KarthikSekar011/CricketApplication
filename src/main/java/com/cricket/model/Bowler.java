@@ -1,15 +1,16 @@
 package com.cricket.model;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
-public class Bowling {
+public class Bowler {
 	//W, M, AVG, BEST, ECO
 
-	@Id 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int wickets;
 	private int matches;
@@ -17,12 +18,12 @@ public class Bowling {
 	private int best;
 	private double economy;
 	
-	public Bowling() {
+	public Bowler() {
 		super();
 		
 	}
 
-	public Bowling(int id, int wickets, int matches, double average, int best, double economy) {
+	public Bowler(int id, int wickets, int matches, double average, int best, double economy) {
 		super();
 		this.id = id;
 		this.wickets = wickets;

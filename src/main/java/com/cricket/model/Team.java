@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Team {
 	//id,name, captain
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
 	private String captain;

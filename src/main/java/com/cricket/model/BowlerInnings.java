@@ -3,6 +3,7 @@ package com.cricket.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "bowlerInnings")
 public class BowlerInnings {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +31,10 @@ public class BowlerInnings {
     @Column(name = "economy")
     private double economy = 0.0;
 
+    @ManyToOne
+    @JoinColumn(name = "INNINGS_ID", referencedColumnName = "INNINGS_ID", nullable = false)
+    private Innings bowlerInnings;
+
     public Long getId() {
         return id;
     }
@@ -38,4 +43,67 @@ public class BowlerInnings {
         this.id = id;
     }
 
+    public Innings getBowlerInnings() {
+        return bowlerInnings;
+    }
+
+    public void setBowlerInnings(Innings bowlerInnings) {
+        this.bowlerInnings = bowlerInnings;
+    }
+
+    public long getBowlerId() {
+        return bowlerId;
+    }
+
+    public void setBowlerId(long bowlerId) {
+        this.bowlerId = bowlerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getOversBowled() {
+        return oversBowled;
+    }
+
+    public void setOversBowled(int oversBowled) {
+        this.oversBowled = oversBowled;
+    }
+
+    public int getRunsConceded() {
+        return runsConceded;
+    }
+
+    public void setRunsConceded(int runsConceded) {
+        this.runsConceded = runsConceded;
+    }
+
+    public int getWickets() {
+        return wickets;
+    }
+
+    public void setWickets(int wickets) {
+        this.wickets = wickets;
+    }
+
+    public int getMaidens() {
+        return maidens;
+    }
+
+    public void setMaidens(int maidens) {
+        this.maidens = maidens;
+    }
+
+    public double getEconomy() {
+        return economy;
+    }
+
+    public void setEconomy(double economy) {
+        this.economy = economy;
+    }
 }
